@@ -56,4 +56,18 @@ describe Bookmark do
       expect(bookmark.url).to eq 'http://www.first_test.com'
     end
   end
+
+  describe ".update" do
+    it 'should update the bookmark with new url or title' do
+      Bookmark.create('first_test', 'http://www.first_test.com')
+
+      bookmark = Bookmark.find(title: 'first_test')
+      bookmark = Bookmark.update(id: bookmark.id, title: 'second_test', url: 'http://www.second_test.com')
+
+      expect(bookmark).to be_a Bookmark
+      expect(bookmark.id).to eq bookmark.id
+      expect(bookmark.title).to eq 'second_test'
+      expect(bookmark.url).to eq 'http://www.second_test.com'
+    end
+  end
 end
