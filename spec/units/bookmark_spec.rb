@@ -5,9 +5,9 @@ describe Bookmark do
   describe '.all' do
     it "returns a list of all saved bookmarks" do
       # Add the test data
-      bookmark = Bookmark.create('Makers Academy', 'http://www.makersacademy.com')
-      Bookmark.create('DAS', 'http://www.destroyallsoftware.com')
-      Bookmark.create('Google', 'http://www.google.com')
+      bookmark = Bookmark.create(title: 'Makers Academy', url: 'http://www.makersacademy.com')
+      Bookmark.create(title: 'DAS', url: 'http://www.destroyallsoftware.com')
+      Bookmark.create(title: 'Google', url:  'http://www.google.com')
 
       bookmarks = Bookmark.all
 
@@ -22,7 +22,7 @@ describe Bookmark do
 
   describe '.create' do
     it 'should add a bookmark to list of saved bookmarks' do
-      bookmark = Bookmark.create('Test Bookmark', 'http://www.testbookmark.com')
+      bookmark = Bookmark.create(title: 'Test Bookmark', url: 'http://www.testbookmark.com')
       persisted_data = persisted_data(id: bookmark.id)
 
       expect(bookmark).to be_a Bookmark
@@ -34,7 +34,7 @@ describe Bookmark do
 
   describe ".delete" do
     it "should delete a bookmark from the list" do
-      bookmark = Bookmark.create('first_test', "http://www.first_test.com")
+      bookmark = Bookmark.create(title: 'first_test', url: "http://www.first_test.com")
 
       # persisted_data = persisted_data(id: bookmark.id)
       Bookmark.delete(id: bookmark.id)
@@ -44,30 +44,28 @@ describe Bookmark do
     end
   end
 
-  describe ".find" do
-    it 'should find a bookmark in the database with the title' do
-      Bookmark.create('first_test', "http://www.first_test.com")
+  describe ".update" do
+    it 'should update the bookmark with new url or title' do
+      bookmark = Bookmark.create(title: 'first_test', url: 'http://www.first_test.com')
+      updated_bookmark = Bookmark.update(id: bookmark.id, title: 'second_test', url: 'http://www.second_test.com')
 
-      bookmark = Bookmark.find(title: 'first_test')
-
-      expect(bookmark).to be_a Bookmark
-      expect(bookmark.id).to eq bookmark.id
-      expect(bookmark.title).to eq 'first_test'
-      expect(bookmark.url).to eq 'http://www.first_test.com'
+      expect(updated_bookmark).to be_a Bookmark
+      expect(updated_bookmark.id).to eq bookmark.id
+      expect(updated_bookmark.title).to eq 'second_test'
+      expect(updated_bookmark.url).to eq 'http://www.second_test.com'
     end
   end
 
-  describe ".update" do
-    it 'should update the bookmark with new url or title' do
-      Bookmark.create('first_test', 'http://www.first_test.com')
+  describe ".find" do
+    it 'it returns the requested bookmark object' do
+      bookmark = Bookmark.create(title: 'first_test', url: "http://www.first_test.com")
 
-      bookmark = Bookmark.find(title: 'first_test')
-      bookmark = Bookmark.update(id: bookmark.id, title: 'second_test', url: 'http://www.second_test.com')
+      result = Bookmark.find(id: bookmark.id)
 
-      expect(bookmark).to be_a Bookmark
-      expect(bookmark.id).to eq bookmark.id
-      expect(bookmark.title).to eq 'second_test'
-      expect(bookmark.url).to eq 'http://www.second_test.com'
+      expect(result).to be_a Bookmark
+      expect(result.id).to eq bookmark.id
+      expect(result.title).to eq 'first_test'
+      expect(result.url).to eq 'http://www.first_test.com'
     end
   end
 end

@@ -11,6 +11,18 @@ So that I can record a bookmark for later use
 I want to be able to add a bookmark to my list of bookmarks
 ```
 
+```
+As a user
+So I can remove my bookmark from Bookmark Manager
+I want to delete a bookmark
+```
+
+```
+As a user
+So I can change a bookmark in Bookmark Bookmark Manager
+I want to update a bookmark
+```
+
 ### Domain Model
 User Story 1 Diagram:
 
@@ -26,20 +38,10 @@ User Story 2 Diagram:
 
 * Methods: see_list
 
-|Class |User|
-|-----|-----|
-|Properties| name |
-|Actions | see_name |
-
 |Class | Bookmark |
 |---|---|
-|Properties | url, short_name, description |
-|Actions|    |
-
-|Class | BookmarkManager |
-|-----|------|
-|Properties | bookmarks.db |
-|Actions | see_list, create_bookmark |
+|Properties | id, title, url|
+|Actions| .all, .create, .delete, .find, .update|
 
 ### Database Setup
 

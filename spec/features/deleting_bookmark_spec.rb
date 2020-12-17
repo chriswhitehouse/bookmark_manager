@@ -1,6 +1,6 @@
 feature "deleting bookmarks" do
   scenario "deletes one bookmark from the list" do
-    Bookmark.create('Test1', 'http://www.test1.com')
+    Bookmark.create(title: 'Test1', url: 'http://www.test1.com')
     visit('/bookmarks')
     first('.bookmark').click_button("Delete")
 

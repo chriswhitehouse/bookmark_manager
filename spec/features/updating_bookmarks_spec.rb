@@ -1,25 +1,18 @@
-feature 'When I want to be able to update an existing bookmark' do
-  scenario 'I want to find the bookmark by title' do
-    Bookmark.create("Test", "www.test.com")
+feature 'Updating a bookmark' do
+  scenario 'A user # COMBAK: n update a bookmark' do
+    bookmark = Bookmark.create(title: "Test", url: "https://www.test.com")
     visit('/bookmarks')
-    click_button("Update")
-    fill_in("title", with: 'Test')
-    click_button("Find")
-    #expect(page).to have_content('Test')
-    #expect(page).to have_content('www.test.com')
-    expect(page).to have_button("Update")
 
-  end
+    first('.bookmark').click_button 'Edit'
+    expect(current_path).to eq "/bookmarks/#{bookmark.id}/edit"
 
-  scenario 'I want to update my found bookmark' do
-    Bookmark.create('Test', 'https://www.test.com')
-    visit('/bookmarks')
-    click_button('Update')
-    fill_in("title", with: 'Test')
-    click_button("Find")
-    fill_in("url", with: 'https://www.test.co.uk')
-    click_button("Update")
-    expect(page).to_not have_link('Test', href: 'https://www.test.com')
-    expect(page).to have_link('Test', href: 'https://www.test.co.uk')
+    fill_in('title', with: 'Test2')
+    fill_in('url', with: 'https://www.test2.com')
+    click_button("Submit")
+
+    expect(current_path).to eq '/bookmarks'
+    expect(page).not_to have_link('Test', href: 'https://www.test.com')
+    expect(page).to have_link('Test2', href: 'https://www.test2.com')
+
   end
 end

@@ -18,7 +18,7 @@ class Bookmark
     end
   end
 
-  def self.create(title, url)
+  def self.create(title:, url:)
     create_db_connection
 
     result = @connection.exec("INSERT INTO bookmarks (url, title) VALUES ('#{url}', '#{title}') RETURNING id, title, url;")
@@ -28,14 +28,14 @@ class Bookmark
   def self.delete(id:)
     create_db_connection
 
-    @connection.exec("DELETE FROM bookmarks WHERE id = '#{id}';")
+    @connection.exec("DELETE FROM bookmarks WHERE id = #{id};")
 
   end
 
-  def self.find(title: )
+  def self.find(id: )
     create_db_connection
 
-    result = @connection.exec "SELECT * FROM bookmarks WHERE title = '#{title}'"
+    result = @connection.exec "SELECT * FROM bookmarks WHERE id = #{id};"
     Bookmark.new(id: result[0]['id'], title: result[0]['title'], url: result[0]['url'])
   end
 
