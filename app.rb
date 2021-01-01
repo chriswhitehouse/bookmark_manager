@@ -1,48 +1,44 @@
-require 'sinatra/base'
-
-
+require "sinatra/base"
 
 class BookmarkManager < Sinatra::Base
-
   enable :sessions, :method_override
 
-  get '/' do
-    redirect'/bookmarks'
+  get "/" do
+    redirect "/bookmarks"
   end
 
-  get '/bookmarks' do
+  get "/bookmarks" do
     @bookmarks = Bookmark.all
     erb :'bookmarks/index'
   end
 
-  post '/bookmarks' do
+  post "/bookmarks" do
     Bookmark.create(title: params[:title], url: params[:url])
-    redirect '/bookmarks'
+    redirect "/bookmarks"
   end
 
-  delete '/bookmarks/:id' do
+  delete "/bookmarks/:id" do
     Bookmark.delete(id: params[:id])
-    redirect'/bookmarks'
+    redirect "/bookmarks"
   end
 
-  patch '/bookmarks/:id' do
+  patch "/bookmarks/:id" do
     Bookmark.update(id: params[:id], title: params[:title], url: params[:url])
-    redirect '/bookmarks'
+    redirect "/bookmarks"
   end
 
-  get '/bookmarks/new' do
+  get "/bookmarks/new" do
     erb :'bookmarks/new'
   end
 
-  get '/bookmarks/delete' do
+  get "/bookmarks/delete" do
     erb :'bookmarks/delete'
   end
 
-  get '/bookmarks/:id/edit' do
+  get "/bookmarks/:id/edit" do
     @bookmark = Bookmark.find(id: params[:id])
     erb :'bookmarks/edit'
   end
-
 
   # start the server if ruby file executed directly
   run! if app_file == $0
