@@ -35,19 +35,37 @@ I want to be able to add a bookmark to my list of bookmarks
 |Class | Bookmark |
 |---|---|
 |Properties | id, title, url|
-|Actions| .all, .create, .delete, .find, .update|
+|Actions| .all, .create |
 #### User Story 3
 ```
 As a user
 So I can remove my bookmark from Bookmark Manager
 I want to delete a bookmark
 ```
+|Class | Bookmark |
+|---|---|
+|Properties | id, title, url|
+|Actions| .all, .delete |
 #### User Story 4
 ```
 As a user
-So I can change a bookmark in Bookmark Bookmark Manager
+So I can change a bookmark in Bookmark Manager
 I want to update a bookmark
 ```
+|Class | Bookmark |
+|---|---|
+|Properties | id, title, url|
+|Actions| .all, .find, .update|
+#### User Story 5
+```
+A a user
+So I can record why the bookmark is interesting
+I want to be able to add comments to a bookmark
+```
+|Class | Comment |
+|---|---|
+|Properties | id, text, bookmark_id|
+|Actions| .all_for_boomark, .create|
 
 ## Code Example
 Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
@@ -59,11 +77,12 @@ Provide step by step series of examples and explanations about how to get a deve
 
 1. Connect to psql
 2. Create a development database using the psql command `CREATE DATABASE bookmark_manager`;
+3. Create a test database using the psql command `CREATE DATABASE bookmark_manager_test`
 3. Connect to the database using the psql command `\c bookmark_manager`;
 4. Run the query we have saved in the file '01_create_bookmarks_table.sql'
-5. Create a test database using the psql command `CREATE DATABASE bookmark_manager_test`
-6. Repeat steps 3 and 4 for the test database.
-7. Alter the each of the tables to add a column, by running the query we have saved in '02_add_title_to_bookmarks.sql'
+5. Run the query we have saved in the file '02_add_title_to_bookmarks.sql'
+6. Run the query we have saved in the file '03_create_comments_table.sql'
+6. Repeat steps 4 to 6 for the test database.
 
 ## API Reference
 
@@ -88,15 +107,3 @@ Give proper credits. This could be a link to any repo which inspired you to buil
 A short snippet describing the license (MIT, Apache etc)
 
 MIT © [Yourname]()
-
-
-
-### Database Setup
-
-1. Connect to psql
-2. Create a development database using the psql command `CREATE DATABASE bookmark_manager`;
-3. Connect to the database using the psql command `\c bookmark_manager`;
-4. Run the query we have saved in the file '01_create_bookmarks_table.sql'
-5. Create a test database using the psql command `CREATE DATABASE bookmark_manager_test`
-6. Repeat steps 3 and 4 for the test database.
-7. Alter the each of the tables to add a column, by running the query we have saved in '02_add_title_to_bookmarks.sql'

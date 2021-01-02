@@ -1,7 +1,6 @@
 require 'sinatra/flash'
 require 'sinatra/base'
 require './database_connection_setup'
-require 'uri'
 
 class BookmarkManager < Sinatra::Base
   enable :sessions, :method_override
@@ -43,6 +42,16 @@ class BookmarkManager < Sinatra::Base
   get "/bookmarks/:id/edit" do
     @bookmark = Bookmark.find(id: params[:id])
     erb :'bookmarks/edit'
+  end
+
+  get "/bookmarks/:id/comments/new" do
+    @bookmark_id = params[:id]
+    erb :'comments/new'
+  end
+
+  post "/bookmarks/:id/comments" do
+    Comment.create(text: params[:comment], bookmark_id: params[:id])
+    redirect '/bookmarks'
   end
 
   # start the server if ruby file executed directly

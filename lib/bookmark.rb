@@ -1,4 +1,5 @@
 require_relative 'database_connection'
+require 'uri'
 
 class Bookmark
   attr_reader :id, :title, :url
@@ -34,6 +35,10 @@ class Bookmark
   def self.update(id:, title:, url:)
     result = DatabaseConnection.query("UPDATE bookmarks SET url = '#{url}', title = '#{title}' WHERE id = #{id.to_i} RETURNING id, title, url;")
     Bookmark.new(id: result[0]["id"], title: result[0]["title"], url: result[0]["url"])
+  end
+
+  def comments(comment_class = Comment)
+    comment_class.where(bookmark_id: id)
   end
 
   private

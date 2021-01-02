@@ -21,10 +21,10 @@ describe Bookmark do
   describe ".create" do
     it "should add a bookmark to list of saved bookmarks" do
       bookmark = Bookmark.create(title: "Test Bookmark", url: "http://www.testbookmark.com")
-      persisted_data = persisted_data(id: bookmark.id)
+      persisted_data = persisted_data(table: 'bookmarks', id: bookmark.id)
 
       expect(bookmark).to be_a Bookmark
-      expect(bookmark.id).to eq persisted_data["id"]
+      expect(bookmark.id).to eq persisted_data.first["id"]
       expect(bookmark.title).to eq "Test Bookmark"
       expect(bookmark.url).to eq "http://www.testbookmark.com"
     end
@@ -68,6 +68,17 @@ describe Bookmark do
       expect(result.id).to eq bookmark.id
       expect(result.title).to eq "first_test"
       expect(result.url).to eq "http://www.first_test.com"
+    end
+  end
+
+  describe "#comments" do
+    let(:comment_class) { double(:comment_class) }
+
+    it 'returns a list of comments on the bookmark' do
+      bookmark = Bookmark.create(title: 'Makers Academy', url: 'http://www.makersacademy.com')
+      expect(comment_class).to receive(:where).with(bookmark_id: bookmark.id)
+
+      bookmark.comments(comment_class)
     end
   end
 end
