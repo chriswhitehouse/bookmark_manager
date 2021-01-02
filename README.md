@@ -67,6 +67,17 @@ I want to be able to add comments to a bookmark
 |Properties | id, text, bookmark_id|
 |Actions| .where, .create|
 
+#### User Story 6
+```
+A a user
+So I can group bookmarks
+I want to be able to tag bookmarks
+```
+|Class | Tag |
+|---|---|
+|Properties | id, content|
+|Actions| .where, .create|
+
 ## Code Example
 Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
 
@@ -82,7 +93,10 @@ Provide step by step series of examples and explanations about how to get a deve
 4. Run the query we have saved in the file '01_create_bookmarks_table.sql'
 5. Run the query we have saved in the file '02_add_title_to_bookmarks.sql'
 6. Run the query we have saved in the file '03_create_comments_table.sql'
-6. Repeat steps 4 to 6 for the test database.
+7. Run the query we have saved in the file '04_create_tags_table.sql'
+8. Run the query we have saved in the file '05
+_create_bookmarks_tags_table.sql'
+9. Repeat steps 4 to 6 for the test database.
 
 ## API Reference
 

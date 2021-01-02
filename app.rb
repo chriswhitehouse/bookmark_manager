@@ -54,6 +54,17 @@ class BookmarkManager < Sinatra::Base
     redirect '/bookmarks'
   end
 
+  get '/bookmarks/:id/tags/new' do
+    @bookmark_id = params[:id]
+    erb :'/tags/new'
+  end
+
+  post '/bookmarks/:id/tags' do
+    tag = Tag.create(content: params[:tag])
+    BookmarkTag.create(bookmark_id: params[:id], tag_id: tag.id)
+    redirect '/bookmarks'
+  end
+
   # start the server if ruby file executed directly
   run! if app_file == $0
 end

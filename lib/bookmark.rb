@@ -41,6 +41,10 @@ class Bookmark
     comment_class.where(bookmark_id: id)
   end
 
+  def tags(tag_class = Tag)
+    tag_class.where(bookmark_id: id)
+  end
+
   private
 
   def self.is_url?(url)
