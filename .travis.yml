@@ -11,6 +11,7 @@ before_script:
   - psql  -U postgres -c 'CREATE DATABASE bookmark_manager_test;'
   - psql  -U postgres bookmark_manager_test < db/migrations/01_create_bookmarks_table.sql
   - psql  -U postgres bookmark_manager_test < db/migrations/02_add_title_to_bookmarks.sql
+  - psql  -U postgres bookmark_manager_test < db/migrations/03_create_comments_table.sql
 
 script:
   - bundle exec rspec
