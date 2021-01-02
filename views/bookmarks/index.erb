@@ -1,7 +1,7 @@
 
   <h1>Welcome, <% if @user %><%= @user.email %><% end %> to Bookmark Manager</h1>
 
-  <%= flash[:warning] %>
+  <%= flash[:notice] %>
 
 <ul>
   <% @bookmarks.each do |bookmark| %>
@@ -52,3 +52,7 @@
     </form>
   </li>
 </ul>
+
+<form action="/sessions/destroy" method="post">
+  <input type="submit" value="Sign out" />
+</form>
