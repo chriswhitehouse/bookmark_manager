@@ -1,4 +1,6 @@
 <h1>Welcome to Bookmark Manager</h1>
+  <%= flash[:warning] %>
+
 <ul>
   <% @bookmarks.each do |bookmark| %>
     <li class="bookmark" id="bookmark-<%= bookmark.id %>">
