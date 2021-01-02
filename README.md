@@ -97,12 +97,25 @@ I want to filter Bookmarks by Tag
 |Class | Bookmark |
 |---|---|
 |Properties | id, title, url|
-|Actions| .tags|
+|Actions| .tags, .where|
 
 |Class | Tag |
 |---|---|
 |Properties | id, content|
 |Actions| .where, .create, .bookmarks|
+
+
+#### User Story 8
+```
+As a user
+So I can manage my Bookmarks
+I wan to be able to register as a user
+```
+|Class | User |
+|---|---|
+|Properties | id, email, password|
+|Actions| .create, .find|
+
 
 ## Code Example
 Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
@@ -120,9 +133,9 @@ Provide step by step series of examples and explanations about how to get a deve
 5. Run the query we have saved in the file '02_add_title_to_bookmarks.sql'
 6. Run the query we have saved in the file '03_create_comments_table.sql'
 7. Run the query we have saved in the file '04_create_tags_table.sql'
-8. Run the query we have saved in the file '05
-_create_bookmarks_tags_table.sql'
-9. Repeat steps 4 to 6 for the test database.
+8. Run the query we have saved in the file '05_create_bookmarks_tags_table.sql'
+9. Run the query we have saved in the file '06_create_users_table.sql'
+9. Repeat steps 4 to 9 for the test database.
 
 ## API Reference
 
