@@ -62,6 +62,11 @@ A a user
 So I can record why the bookmark is interesting
 I want to be able to add comments to a bookmark
 ```
+|Class | Bookmark |
+|---|---|
+|Properties | id, title, url|
+|Actions| .comments|
+
 |Class | Comment |
 |---|---|
 |Properties | id, text, bookmark_id|
@@ -73,10 +78,31 @@ A a user
 So I can group bookmarks
 I want to be able to tag bookmarks
 ```
+|Class | Bookmark |
+|---|---|
+|Properties | id, title, url|
+|Actions| .tags|
+
 |Class | Tag |
 |---|---|
 |Properties | id, content|
 |Actions| .where, .create|
+
+#### User Story 7
+```
+As a user
+So I can find relevant bookmarks
+I want to filter Bookmarks by Tag
+```
+|Class | Bookmark |
+|---|---|
+|Properties | id, title, url|
+|Actions| .tags|
+
+|Class | Tag |
+|---|---|
+|Properties | id, content|
+|Actions| .where, .create, .bookmarks|
 
 ## Code Example
 Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.

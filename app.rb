@@ -1,6 +1,6 @@
-require 'sinatra/flash'
-require 'sinatra/base'
-require './database_connection_setup'
+require "sinatra/flash"
+require "sinatra/base"
+require "./database_connection_setup"
 
 class BookmarkManager < Sinatra::Base
   enable :sessions, :method_override
@@ -51,18 +51,23 @@ class BookmarkManager < Sinatra::Base
 
   post "/bookmarks/:id/comments" do
     Comment.create(text: params[:comment], bookmark_id: params[:id])
-    redirect '/bookmarks'
+    redirect "/bookmarks"
   end
 
-  get '/bookmarks/:id/tags/new' do
+  get "/bookmarks/:id/tags/new" do
     @bookmark_id = params[:id]
     erb :'/tags/new'
   end
 
-  post '/bookmarks/:id/tags' do
+  post "/bookmarks/:id/tags" do
     tag = Tag.create(content: params[:tag])
     BookmarkTag.create(bookmark_id: params[:id], tag_id: tag.id)
-    redirect '/bookmarks'
+    redirect "/bookmarks"
+  end
+
+  get "/tags/:id/bookmarks" do
+    @tag = Tag.find(id: params["id"])
+    erb :'tags/index'
   end
 
   # start the server if ruby file executed directly
